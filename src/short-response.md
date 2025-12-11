@@ -1,6 +1,7 @@
 # Short Responses
 
 For this assessment, aim to write a response with the following qualities:
+
 - [ ] Addresses all parts of the prompt
 - [ ] Accurately uses relevant technical terminology
 - [ ] Is free of grammar and spelling mistakes
@@ -26,7 +27,7 @@ const getLetterGrade = (score) => {
   }
 
   return "Your grade is: " + letter;
-}
+};
 
 console.log(getLetterGrade(95)); // This should print "Your grade is: A"
 console.log(getLetterGrade(82)); // This should print "Your grade is: B"
@@ -42,11 +43,11 @@ console.log(getLetterGrade(65)); // This should print "Your grade is: F"
 
 **Part A:**
 
-Your response...
+The function `getLetterGrade` when called, prints `"Your grade is: undefined"`, because the letter **variable** is declared multiple times within the if statement. This means the **block scope** of the if statement prevents a value from being added to the `letter` variable created at the beginning of the `getLetterGrade` function, and by default a return value is undefined.
 
 **Part B:**
 
-Your response...
+To fix this code, I would simply remove the let declarations inside each if statement, which would be lines 20, 22, 24, and 26. This allows the variable `letter `declared outside the if statement to be updated.
 
 ---
 
@@ -69,18 +70,17 @@ console.log(originalSettings.volume);
 
 **Part A:**
 
-Your response...
+When logging, `originalSettings` will print the number 75. This is because when you create a copy of an object, both the copy _and_ the original will reference the same value. This means that any modification to the object copy will result in modification to the original.
 
 **Part B:**
 
-Your response...
+In order to have any modifications done to `newSettings.volume` not affect `originalSettings.volume`, the best course of action would be to create a **true copy**. This is done by creating a copy with of an object with the **spread operator**.
 
 **Corrected Code:**
 
 ```js
-// Fix this code so newSettings is a true copy
 const originalSettings = { volume: 50, brightness: 80 };
-const newSettings = originalSettings;
+const newSettings = { ...originalSettings }; // spread operator creates a true copy
 newSettings.volume = 75;
 console.log(originalSettings.volume);
 ```
@@ -90,6 +90,7 @@ console.log(originalSettings.volume);
 ## Prompt 3
 
 Given this array of products and the code using `filter`:
+
 ```js
 const products = [
   { name: "Laptop", price: 1000, inStock: true },
@@ -99,15 +100,16 @@ const products = [
 ];
 
 const itemsInStock = products.filter((product) => {
-  return product.inStock
+  return product.inStock;
 });
 ```
 
 Walk through what happens in the first iteration of filter:
+
 - What is the value of `product`?
 - What gets returned from the callback?
 - What happens with that returned value?
 
 ### Response 3
 
-Your response...
+During the first iteration of `products.filter`, the value of `product` is the first element in the array. The **value** of the **key** for `person.inStock` is returned, which is either `true` or `false`. This returned value is used a _condition_ to check which elements in the array are **filtered** to the new array created. In the code above, the end result is that array elements 0, 2, and 3, get returned in the new array created, since each of these elements value of the key `inStock` is true.
